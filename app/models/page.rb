@@ -10,4 +10,7 @@ class Page < ActiveRecord::Base
 
   belongs_to :organization
 
+  has_many :visits
+
+
 end
