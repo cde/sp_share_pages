@@ -7,10 +7,10 @@ class Page < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 256}
 
-
   belongs_to :organization
 
   has_many :visits
+  has_many :shares
 
 
 end
