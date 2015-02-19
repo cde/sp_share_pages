@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218230118) do
+ActiveRecord::Schema.define(version: 20150219005639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20150218230118) do
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "default_bg_color"
+    t.string   "default_button_color"
+  end
+
+  create_table "page_wrappers", force: :cascade do |t|
+    t.text     "header"
+    t.text     "footer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150218230118) do
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.text     "share_button"
   end
 
   add_index "pages", ["organization_id"], name: "index_pages_on_organization_id", using: :btree
@@ -50,6 +60,17 @@ ActiveRecord::Schema.define(version: 20150218230118) do
   end
 
   add_index "shares", ["page_id"], name: "index_shares_on_page_id", using: :btree
+
+  create_table "variants", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "parameters"
+    t.integer  "provider_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "variants", ["provider_id"], name: "index_variants_on_provider_id", using: :btree
 
   create_table "visits", force: :cascade do |t|
     t.string   "location"

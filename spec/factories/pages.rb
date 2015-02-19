@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :page do
-    title "MyString"
-url "MyString"
-archived false
+    title "abc"
+    url "http://abc.testing.com"
+    archived false
   end
 
 end
