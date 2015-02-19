@@ -12,5 +12,7 @@ class Page < ActiveRecord::Base
   has_many :visits
   has_many :shares
 
+  has_one :page_wrapper
+
 
 end
